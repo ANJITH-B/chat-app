@@ -1,7 +1,9 @@
 import { Button } from '@chakra-ui/react'
 import React from 'react'
 import ThemeToggle from '../../components/setting/settings';
-import Auth from '../../components/setting/auth/login';
+import Auth from '../../layout/Auth';
+
+
 
 const homePage = () => {
   return (

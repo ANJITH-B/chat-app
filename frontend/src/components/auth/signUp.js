@@ -1,12 +1,12 @@
 import React from 'react'
-import { FormControl, FormLabel, FormHelperText, Input, Image, Center, useToast, Button, Toast } from '@chakra-ui/react';
+import { FormControl, FormHelperText, Input, Image, Center, Button, Toast } from '@chakra-ui/react';
 
 const GoogleImg = 'https://imagepng.org/wp-content/uploads/2019/08/google-icon.png';
 const AppleImg = 'https://freepngimg.com/download/apple/58687-logo-computer-apple-icons-free-hd-image.png';
 
 
 const SignUp = ({onClose}) => {
-
+    
     const handleSignUpClick = () => {
         Toast({
           title: 'Account created.',

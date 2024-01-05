@@ -1,12 +1,14 @@
 import React from 'react'
-import { Alert, AlertDescription, AlertIcon, Button, Center, FormControl, FormLabel, Input, Text } from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertIcon, Button, Center, FormControl, FormLabel, HStack, Input, Text } from '@chakra-ui/react'
 import { ArrowBackIcon } from '@chakra-ui/icons';
 
 const ForgetPass = ({onBackToLogin, onClose}) => {
   return (
     <>
+    <HStack>
       <ArrowBackIcon onClick={onBackToLogin} size='lg'/>
       <Text fontSize='xl'>Forget Password ?</Text>
+    </HStack>
       <FormControl mt={3}>
         <FormLabel>Email address</FormLabel>
         <Input type='email' placeholder='enter your mail id'/>

@@ -1,19 +1,29 @@
 const mongoose = require("mongoose");
-
+const bcrypt = require('bcryptjs')
 
 const userSchema = mongoose.Schema(
   {
     name: { type: String, require: true },
-    email: { type: String, require: true },
+    email: { type: String, require: true, unique: true },
     password: { type: String, require: true },
     pic: {
       type: String,
-      require: true,
       default: "https://happytravel.viajes/wp-content/uploads/2020/04/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     },
   },
   { timestamps: true }
 );
+userSchema.methods.matchPassword=async function (enteredPassword,){
+  return await bcrypt.compare(enteredPassword,this.password)
+}
+
+userSchema.pre('save', async function (next) {
+  if (!this.isModified) {
+    next()
+  }
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt)
+})
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;

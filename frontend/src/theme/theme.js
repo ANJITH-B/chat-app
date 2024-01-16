@@ -19,7 +19,7 @@ const darkTheme = {
 
 const theme = extendTheme({
   config: {
-    initialColorMode: "light",
+    initialColorMode: "dark",
     useSystemColorMode: false,
   },
   styles: {
@@ -29,6 +29,20 @@ const theme = extendTheme({
         color: props.colorMode === "dark" ? "white" : "gray.800",
       },
     }),
+  },
+  fonts: {
+    // body: "'Poppins', sans-serif;",
+    // heading: "'Poppins', sans-serif;",
+    // text:"'DM Sans', sans-serif ",
+    // headingStyles: {
+    //   300: {
+    //     fontWeight: 'light', // Apply Light (300) weight to heading
+    //   },
+    //   900: {
+    //     fontWeight: 'black', // Apply Black (900) weight to heading
+    //   },
+    // },
+    // ... other font styles if needed
   },
   lightTheme,
   darkTheme,

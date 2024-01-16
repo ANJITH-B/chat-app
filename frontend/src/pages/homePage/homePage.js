@@ -8,6 +8,7 @@ import Auth from '../../layout/Auth';
 const homePage = () => {
   return (
     <div>
+      
       <Button>homeP</Button>
       <ThemeToggle/>
       <Auth/>

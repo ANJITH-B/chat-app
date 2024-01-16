@@ -34,7 +34,7 @@ const Login = ({ onClose, onForgetPasswordClick }) => {
         <Button colorScheme='blue' w={"100vh"} mr={0} size='md' onClick={onClose}>Login</Button>
       </Center>
       <Center mt={3} >
-        <Button colorScheme='red' mr={0} w={"100vh"} onClick={() => { setemail("guest@example.com"); setpassword("123456") }}>Guest User</Button>
+        <Button colorScheme='green' mr={0} w={"100vh"} onClick={() => { setemail("guest@example.com"); setpassword("123456") }}>Guest User</Button>
       </Center>
     </>
   )

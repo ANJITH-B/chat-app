@@ -13,54 +13,108 @@ const SignUp = ({ onClose }) => {
     const [email, setemail] = useState()
     const [conformpassword, setconformpassword] = useState()
     const [password, setpassword] = useState()
-    const [pic, setpic] = useState()
-    const [loading, setLoding] = useState(false)
-    const toast = useToast;
+    const [pic, setPic] = useState()
+    const [loading, setLoading] = useState(false)
+   const toast = useToast();
 
-    const postDetail = (pics) => {
-        setLoding(true)
-        if (pic === undefined) {
-            toast({
-                title: 'please select an image.',
-                description: "We've created your account for you.",
-                status: 'warning',
-                duration: 9000,
-                isClosable: true,
-                position: 'bottom',
-              })
-              return
-        }
-        if(pics.type === 'image/jpeg' || pics.type === "image/png"){
-            const data = new FormData();
-            data.append('file',pics);
-            data.append('upload_present',"chat-app");
-            data.append('clound_name', 'roadsidecoder');
-            fetch("https://api.cloudinary.com/v1_1/dchypvjoe/images/upload",{
-                method: "post",
-                body: "data",
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                setpic(data.url.toString());
-                setLoding(false);
-            })
-            .catch((err) => {
-                console.log(err);
-                setLoding(false);
-            })
+    
+const postDetails = (pics) => {
+    setLoading(true);
 
-        }else {
-            toast({
-                title:"Please Select an Image!",
-                status: "warning",
-                duration: 5000,
-                isClosable: true,
-                position:"bottom",
-            });
-            setLoding(false);
-            return;
-        }
+    if (pics === undefined) {
+      toast({
+        title: "Please Select an Image!",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      return;
     }
+
+    if (pics.type !== "image/jpeg" && pics.type !== "image/png") {
+      toast({
+        title: "Please Select a JPEG or PNG Image!",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+      return;
+    }
+
+    if (pics.type === "image/jpeg" || pics.type === "image/png") {
+
+      const data = new FormData()
+      data.append("file", pics)
+      data.append('upload_present',"Chat-app");
+      data.append("cloud_name", "dchypvjoe")
+      
+      
+      fetch.post("https://api.cloudinary.com/v1_1/dchypvjoe/image/upload", data)
+        .then((response) => {
+          console.log("Cloudinary response:", response);
+          setPic(response.data.url.toString());
+          setLoading(false);
+          toast({
+            title: "Image uploaded successfully!",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+            position: "bottom",
+          });
+        })
+        .catch((error) => {
+            console.log("Cloudinary error:", error);
+            setLoading(false);
+        });
+    }
+  }
+    // const postDetail = (pics) => {
+    //     setLoding(true)
+    //     if (pic === undefined) {
+    //         toast({
+    //             title: 'please select an image.',
+    //             description: "We've.",
+    //             status: 'warning',
+    //             duration: 9000,
+    //             isClosable: true,
+    //             position: 'bottom',
+    //           })
+    //           return
+    //     }
+    //     if(pics.type === 'image/jpeg' || pics.type === "image/png"){
+    //         const data = new FormData();
+    //         data.append('file',pics);
+    //         data.append('upload_present',"Chat-app");
+    //         data.append('clound_name', 'dchypvjoe');
+    //         fetch("https://api.cloudinary.com/v1_1/dchypvjoe/images/upload",{
+    //             method: "post",
+    //             body: data,
+    //         })
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setpic(data.url.toString());
+    //             setLoding(false);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //             setLoding(false);
+    //         })
+
+    //     }else {
+    //         toast({
+    //             title:"Please Select an Image!",
+    //             status: "warning",
+    //             duration: 5000,
+    //             isClosable: true,
+    //             position:"bottom",
+    //         });
+    //         setLoding(false);
+    //         return;
+    //     }
+    // }
 
     const handleSignUpClick = () => {
         Toast({
@@ -107,7 +161,7 @@ const SignUp = ({ onClose }) => {
                             Upload Profile Picture
                         </Center>
                     
-                    <Input id="file-upload" type="file" accept="image/*" onChange={(e) => postDetail(e.target.value)} opacity={0} position="absolute" zIndex="-1" />
+                    <Input id="file-upload" type="file" accept="image/*" onChange={(e) => postDetails(e.target.value)} opacity={0} position="absolute" zIndex="-1" />
                 </Box>
             </FormControl>
 
@@ -116,13 +170,13 @@ const SignUp = ({ onClose }) => {
                 <Center><FormHelperText>or</FormHelperText></Center>
             </FormControl>
             <Center mt={2} >
-                <Button colorScheme='blue' width={"100vh"} variant='outline' mr={0} ml={0} isFitted>
+                <Button colorScheme='blue' width={"100vh"} variant='outline' mr={0} ml={0} >
                     <Image width={5} mr={2} src={GoogleImg} alt='Dan Abramov' />
                     Continue with Google
                 </Button>
             </Center>
             {/* <Center mt={3} >
-                    <Button colorScheme='blue' width={"100vh"} variant='outline' mr={0} ml={0} isFitted>
+                    <Button colorScheme='blue' width={"100vh"} variant='outline' mr={0} ml={0} >
                         <Image width={10} ml={-5} src={AppleImg} alt='Dan Abramov' />
                         Continue with Apple
                     </Button>                 

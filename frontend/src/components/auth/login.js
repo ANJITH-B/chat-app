@@ -21,12 +21,12 @@ const Login = ({ onClose, onForgetPasswordClick }) => {
         <FormHelperText onClick={onForgetPasswordClick} color="blue.500" cursor='pointer' >Forget password ?</FormHelperText>
       </FormControl>
       <Center mt={3} >
-        <Button colorScheme='blue' w={"100vh"} variant='outline' mr={0} ml={0} isFitted>
+        <Button colorScheme='blue' w={"100vh"} variant='outline' mr={0} ml={0} >
           <Image width={5} mr={2} src={GoogleImg} alt='Dan Abramov' /> Continue with Google
         </Button>
       </Center>
       <Center mt={3} >
-        <Button colorScheme='blue' w={"100vh"} variant='outline' mr={0} ml={0} isFitted>
+        <Button colorScheme='blue' w={"100vh"} variant='outline' mr={0} ml={0} >
           <Image width={10} ml={-5} src={AppleImg} /> Continue with Apple
         </Button>
       </Center>
